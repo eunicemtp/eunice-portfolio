@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tarifs & forfaits — Eunice Mutope, design & communication digitale à Namur. Sites web, identité visuelle, affiches, réseaux sociaux pour ASBL, commerces et communautés.">
+  <title>Tarifs — Eunice Mutope</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,800;12..96,900&family=DM+Mono:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --m:  #D4A017;
+      --ml: #F5E6A3;
+      --mk: #A67C00;
+      --b:  #0C0C0C;
+      --w:  #F8F5EE;
+      --g:  #ECEAE2;
+      --font: 'Bricolage Grotesque', sans-serif;
+      --mono: 'DM Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--b); color: var(--w); overflow-x: hidden; cursor: none; }
+
+    /* CURSOR */
+    @media (pointer: fine) {
+      #cur  { width:10px;height:10px;background:var(--m);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s; }
+      #cur2 { width:32px;height:32px;border:1.5px solid var(--m);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .12s ease;opacity:.4; }
+      body:has(a:hover) #cur, body:has(button:hover) #cur { width:20px;height:20px; }
+      body:has(a:hover) #cur2, body:has(button:hover) #cur2 { width:56px;height:56px;opacity:.2; }
+    }
+    @media (pointer: coarse) { #cur,#cur2 { display:none; } body { cursor:auto; } }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 2.5rem;
+      background: rgba(12,12,12,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .logo { font-size: .95rem; font-weight: 900; letter-spacing: -.02em; color: var(--w); text-decoration: none; }
+    .logo em { font-style: normal; color: var(--m); }
+    .nav-r { display: flex; gap: 2rem; align-items: center; }
+    .nav-r a { text-decoration: none; color: var(--w); font-size: .7rem; text-transform: uppercase; letter-spacing: .12em; opacity: .5; transition: opacity .2s; }
+    .nav-r a:hover, .nav-r a.active { opacity: 1; }
+    .nav-r a.nav-cta { color: var(--m); opacity: 1; }
+
+    /* HERO */
+    .hero {
+      min-height: 52vh;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 8rem 2.5rem 3rem;
+      position: relative; overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .sh { position: absolute; pointer-events: none; border-radius: 50%; }
+    .sh1 { width:300px;height:300px;background:var(--m);opacity:.1;top:-80px;right:5%;animation:f1 10s ease-in-out infinite; }
+    .sh2 { width:120px;height:120px;border:2px solid var(--m);opacity:.15;bottom:20%;left:35%;animation:f2 8s ease-in-out infinite; }
+    @keyframes f1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-15px,25px)} }
+    @keyframes f2 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(10px,-15px) scale(1.15)} }
+
+    .hero-content { position: relative; z-index: 2; }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      padding: .28rem .8rem; border-radius: 100px;
+      font-size: .62rem; text-transform: uppercase; letter-spacing: .12em;
+      color: rgba(255,255,255,.45); margin-bottom: 1.5rem;
+    }
+    .hero-pill em { font-style: normal; color: var(--m); }
+    h1 { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 900; line-height: .95; letter-spacing: -.04em; margin-bottom: 1rem; }
+    h1 em { font-style: normal; color: var(--m); }
+    h1 .out { -webkit-text-stroke: 1.5px rgba(255,255,255,.3); color: transparent; }
+    .hero-sub { font-size: .92rem; opacity: .45; font-weight: 300; max-width: 50ch; line-height: 1.7; }
+
+    /* ASBL BANNER */
+    .asbl-banner {
+      background: var(--m); color: var(--b);
+      padding: 1rem 2.5rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .asbl-banner p { font-size: .82rem; font-weight: 500; }
+    .asbl-banner span { font-family: var(--mono); font-size: .7rem; opacity: .65; }
+
+    /* SECTION */
+    section { padding: 4rem 2.5rem; }
+    section + section { border-top: 1px solid rgba(255,255,255,.06); }
+
+    .sec-label {
+      font-family: var(--mono); font-size: .62rem; text-transform: uppercase;
+      letter-spacing: .2em; opacity: .35; margin-bottom: 2rem;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .sec-label::before { content:''; display:block; width:18px; height:1.5px; background:var(--m); }
+
+    .sec-intro { margin-bottom: 2.5rem; }
+    .sec-intro h2 { font-size: clamp(1.6rem,3vw,2.4rem); font-weight:900; letter-spacing:-.03em; margin-bottom: .5rem; }
+    .sec-intro h2 em { font-style:normal; color:var(--m); }
+    .sec-intro p { font-size:.85rem; opacity:.45; font-weight:300; max-width:48ch; line-height:1.7; }
+
+    /* FORFAITS GRID */
+    .forfaits { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: rgba(255,255,255,.07); }
+
+    .forfait {
+      background: var(--b); padding: 2rem 1.5rem;
+      display: flex; flex-direction: column; gap: 1.2rem;
+      transition: background .2s; position: relative;
+    }
+    .forfait:hover { background: #141414; }
+    .forfait.star { background: var(--m); color: var(--b); }
+    .forfait.star:hover { background: #dda818; }
+
+    .f-badge {
+      font-family: var(--mono); font-size: .58rem; text-transform: uppercase;
+      letter-spacing: .12em; padding: .2rem .6rem; border-radius: 100px;
+      width: fit-content;
+    }
+    .f-badge.new  { background: var(--m); color: var(--b); }
+    .f-badge.pop  { background: var(--b); color: var(--m); border: 1px solid var(--b); }
+    .f-badge.def  { border: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.5); }
+    .f-badge.eco  { border: 1px solid rgba(12,12,12,.3); color: rgba(12,12,12,.5); }
+
+    .f-name { font-size: 1.05rem; font-weight: 900; letter-spacing: -.02em; }
+    .f-desc { font-size: .75rem; opacity: .5; font-weight: 300; line-height: 1.5; }
+    .forfait.star .f-desc { opacity: .65; }
+
+    .f-price { padding: 1rem 0; border-top: 1px solid rgba(255,255,255,.08); border-bottom: 1px solid rgba(255,255,255,.08); }
+    .forfait.star .f-price { border-color: rgba(12,12,12,.15); }
+    .f-price .amount { font-size: 2.2rem; font-weight: 900; line-height: 1; letter-spacing: -.03em; }
+    .f-price .currency { font-size: 1rem; font-weight: 400; vertical-align: super; margin-right: 2px; }
+    .f-price .note { font-family: var(--mono); font-size: .6rem; opacity: .4; margin-top: .4rem; letter-spacing: .06em; }
+    .forfait.star .f-price .note { opacity: .55; }
+
+    .f-list { list-style: none; display: flex; flex-direction: column; gap: .5rem; margin-top: auto; }
+    .f-list li { font-size: .75rem; display: flex; align-items: flex-start; gap: .5rem; opacity: .65; line-height: 1.4; }
+    .f-list li::before { content: '→'; color: var(--m); font-size: .65rem; flex-shrink: 0; margin-top: 1px; }
+    .forfait.star .f-list li { opacity: .8; }
+    .forfait.star .f-list li::before { color: var(--b); }
+
+    .f-asbl {
+      font-family: var(--mono); font-size: .6rem; letter-spacing: .08em;
+      padding: .3rem .6rem; background: rgba(255,255,255,.06);
+      border-radius: 4px; text-align: center; color: var(--m);
+    }
+    .forfait.star .f-asbl { background: rgba(12,12,12,.12); color: var(--b); }
+
+    /* ADD-ONS */
+    .addons-section { background: var(--w); color: var(--b); }
+    .addons-section .sec-label { opacity: .4; }
+    .addons-section .sec-intro h2 em { color: var(--mk); }
+
+    .addons-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--g); }
+    .addon {
+      background: var(--w); padding: 1.5rem;
+      display: flex; flex-direction: column; gap: .4rem;
+      transition: background .2s; cursor: default;
+    }
+    .addon:hover { background: var(--ml); }
+    .addon-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+    .addon-name { font-size: .88rem; font-weight: 800; letter-spacing: -.01em; }
+    .addon-price { font-size: .88rem; font-weight: 900; color: var(--mk); white-space: nowrap; }
+    .addon-desc { font-size: .72rem; opacity: .5; font-weight: 300; line-height: 1.5; }
+
+    /* MAINTENANCE */
+    .maint-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(255,255,255,.07); }
+    .maint {
+      background: var(--b); padding: 1.8rem 1.5rem;
+      display: flex; flex-direction: column; gap: 1rem;
+      transition: background .2s;
+    }
+    .maint:hover { background: #141414; }
+    .maint.star { background: rgba(212,160,23,.12); border: 1px solid rgba(212,160,23,.25); }
+    .maint-name { font-size: .95rem; font-weight: 900; letter-spacing: -.02em; }
+    .maint-price .amount { font-size: 1.8rem; font-weight: 900; color: var(--m); letter-spacing: -.03em; }
+    .maint-price .per { font-family: var(--mono); font-size: .65rem; opacity: .4; margin-left: .2rem; }
+    .maint-note { font-family: var(--mono); font-size: .58rem; opacity: .3; letter-spacing: .08em; }
+    .maint-list { list-style: none; display: flex; flex-direction: column; gap: .4rem; }
+    .maint-list li { font-size: .72rem; opacity: .55; display: flex; gap: .5rem; line-height: 1.4; }
+    .maint-list li::before { content:'·'; color: var(--m); font-size: 1rem; line-height: 1; flex-shrink: 0; }
+
+    /* CTA */
+    .cta-section {
+      background: var(--m); color: var(--b);
+      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+    }
+    .cta-section h2 { font-size: clamp(1.8rem,4vw,3rem); font-weight: 900; letter-spacing: -.04em; line-height: 1.0; }
+    .cta-r { display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; }
+    .cta-r p { font-size: .85rem; opacity: .65; max-width: 34ch; line-height: 1.7; font-weight: 300; }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--b); color: var(--w);
+      padding: .8rem 1.8rem; border-radius: 100px;
+      font-size: .78rem; font-weight: 700;
+      text-decoration: none; text-transform: uppercase; letter-spacing: .08em;
+      transition: transform .2s;
+    }
+    .btn-dark:hover { transform: scale(1.04); }
+
+    /* FOOTNOTE */
+    .footnote {
+      padding: 2rem 2.5rem;
+      border-top: 1px solid rgba(255,255,255,.06);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+    }
+    .fn-block p { font-family: var(--mono); font-size: .62rem; opacity: .25; text-transform: uppercase; letter-spacing: .12em; margin-bottom: .5rem; }
+    .fn-block ul { list-style: none; display: flex; flex-direction: column; gap: .3rem; }
+    .fn-block ul li { font-size: .75rem; opacity: .4; display: flex; gap: .5rem; }
+    .fn-block ul li::before { content: '—'; color: var(--m); opacity: .6; }
+
+    /* FOOTER */
+    footer {
+      background: var(--b); padding: 1.2rem 2.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(255,255,255,.05);
+    }
+    .ft-l { font-family: var(--mono); font-size: .6rem; opacity: .25; text-transform: uppercase; letter-spacing: .1em; }
+    .ft-r { display: flex; gap: 1.5rem; }
+    .ft-r a { font-family: var(--mono); font-size: .6rem; color: var(--w); opacity: .25; text-decoration: none; text-transform: uppercase; letter-spacing: .1em; transition: opacity .2s; }
+    .ft-r a:hover { opacity: .8; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .forfaits { grid-template-columns: repeat(2,1fr); }
+      .addons-grid { grid-template-columns: repeat(2,1fr); }
+      .maint-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-r { display: none; }
+      .forfaits { grid-template-columns: 1fr; }
+      .addons-grid { grid-template-columns: 1fr; }
+      section { padding: 3rem 1.5rem; }
+      .asbl-banner { flex-direction: column; align-items: flex-start; }
+      .cta-section { flex-direction: column; }
+      .footnote { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: .6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur2"></div>
+
+<nav>
+  <a href="index.html" class="logo">Eunice <em>Mutope</em></a>
+  <div class="nav-r">
+    <a href="index.html#services">Services</a>
+    <a href="index.html#projets">Projets</a>
+    <a href="index.html#apropos">À propos</a>
+    <a href="pricing.html" class="active">Tarifs</a>
+    <a href="index.html#contact" class="nav-cta">Me contacter</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="sh sh1"></div>
+  <div class="sh sh2"></div>
+  <div class="hero-content">
+    <div class="hero-pill">Services digitaux · <em>Namur, Belgique</em></div>
+    <h1>
+      Des prix <em>clairs,</em><br>
+      <span class="out">sans surprise.</span>
+    </h1>
+    <p class="hero-sub">Un interlocuteur unique, du brief à la mise en ligne. Pas de jargon, pas de devis incompréhensible.</p>
+  </div>
+</div>
+
+<!-- ASBL BANNER -->
+<div class="asbl-banner">
+  <p>🤝 ASBL, associations & communautés religieuses — <strong>réduction de 15% sur tous les forfaits one-shot.</strong></p>
+  <span>Sur présentation de votre numéro d'entreprise</span>
+</div>
+
+<!-- FORFAITS -->
+<section>
+  <p class="sec-label">Création de site web</p>
+  <div class="sec-intro">
+    <h2>Choisissez votre <em>forfait.</em></h2>
+    <p>Du one-page simple à la boutique complète — adapté à votre budget et vos besoins réels.</p>
+  </div>
+  <div class="forfaits">
+
+    <div class="forfait">
+      <span class="f-badge def">Entrée de gamme</span>
+      <div class="f-name">One-Page</div>
+      <div class="f-desc">Site à navigation par ancres. Idéal pour se lancer ou présenter une activité simplement.</div>
+      <div class="f-price">
+        <div class="amount"><span class="currency">€</span>450</div>
+        <div class="note">Paiement en 2× possible</div>
+      </div>
+      <ul class="f-list">
+        <li>5 à 6 sections (accueil, services, à propos, contact…)</li>
+        <li>Design sur-mesure à votre image</li>
+        <li>Navigation fluide par ancres</li>
+        <li>Mobile responsive</li>
+        <li>Formulaire de contact</li>
+        <li>Mise en ligne incluse</li>
+        <li>1 série de retouches</li>
+      </ul>
+      <div class="f-asbl">ASBL / église : €382</div>
+    </div>
+
+    <div class="forfait star">
+      <span class="f-badge pop">Le plus demandé</span>
+      <div class="f-name">Vitrine Starter</div>
+      <div class="f-desc">Pour les indépendants, commerces et petites associations avec plusieurs sections distinctes.</div>
+      <div class="f-price">
+        <div class="amount"><span class="currency">€</span>700</div>
+        <div class="note">Paiement en 2× possible</div>
+      </div>
+      <ul class="f-list">
+        <li>3 à 4 pages séparées</li>
+        <li>Design sur-mesure complet</li>
+        <li>Formulaire de contact avancé</li>
+        <li>Mobile responsive</li>
+        <li>SEO de base (titres, balises)</li>
+        <li>Mise en ligne incluse</li>
+        <li>2 séries de retouches</li>
+      </ul>
+      <div class="f-asbl">ASBL / église : €595</div>
+    </div>
+
+    <div class="forfait">
+      <span class="f-badge def">Complet</span>
+      <div class="f-name">Vitrine Pro</div>
+      <div class="f-desc">Pour les structures actives qui ont besoin d'un site complet, avec blog ou actualités.</div>
+      <div class="f-price">
+        <div class="amount"><span class="currency">€</span>1 200</div>
+        <div class="note">Paiement en 3× possible</div>
+      </div>
+      <ul class="f-list">
+        <li>6 à 8 pages</li>
+        <li>Blog ou section actualités</li>
+        <li>Galerie photos / médias</li>
+        <li>Formulaires avancés</li>
+        <li>Optimisation SEO complète</li>
+        <li>Formation WordPress (1h)</li>
+        <li>2 séries de retouches</li>
+      </ul>
+      <div class="f-asbl">ASBL / église : €1 020</div>
+    </div>
+
+    <div class="forfait">
+      <span class="f-badge new">E-commerce</span>
+      <div class="f-name">Boutique</div>
+      <div class="f-desc">Une boutique WooCommerce complète pour vendre vos produits ou services en ligne.</div>
+      <div class="f-price">
+        <div class="amount"><span class="currency">€</span>1 800</div>
+        <div class="note">Paiement en 3× possible</div>
+      </div>
+      <ul class="f-list">
+        <li>Jusqu'à 30 produits configurés</li>
+        <li>Paiement en ligne (Stripe / Bancontact)</li>
+        <li>Gestion des commandes</li>
+        <li>Mentions légales & politique retour</li>
+        <li>Formation back-office (2h)</li>
+        <li>2 séries de retouches</li>
+      </ul>
+      <div class="f-asbl">ASBL / église : €1 530</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ADD-ONS -->
+<section class="addons-section">
+  <p class="sec-label">Options supplémentaires</p>
+  <div class="sec-intro">
+    <h2>Personnalisez votre <em>forfait.</em></h2>
+    <p>Ajoutez uniquement ce dont vous avez besoin. Chaque option est facturée séparément et clairement.</p>
+  </div>
+  <div class="addons-grid">
+    <div class="addon">
+      <div class="addon-top">
+        <span class="addon-name">Logo & identité visuelle</span>
+        <span class="addon-price">dès €180</span>
+      </div>
+      <p class="addon-desc">Logo, palette de couleurs, typographie. Fichiers livrés en tous formats.</p>
+    </div>
+    <div class="addon">
+      <div class="addon-top">
+        <span class="addon-name">Templates réseaux sociaux</span>
+        <span class="addon-price">€120</span>
+      </div>
+      <p class="addon-desc">5 visuels réutilisables (Instagram, Facebook) adaptés à votre charte.</p>
+    </div>
+    <div class="addon">
+      <div class="addon-top">
+        <span class="addon-name">Affiche / flyer événement</span>
+        <span class="addon-price">dès €80</span>
+      </div>
+      <p class="addon-desc">Affiche A3 ou A4, format print et digital. Livraison sous 5 jours.</p>
+    </div>
+    <div class="addon">
+      <div class="addon-top">
+        <span class="addon-name">Page supplémentaire</span>
+        <span class="addon-price">€60 / page</span>
+      </div>
+      <p class="addon-desc">Toute page additionnelle hors forfait.</p>
+    </div>
+    <div class="addon">
+      <div class="addon-top">
+        <span class="addon-name">Signature email HTML</span>
+        <span class="addon-price">€50</span>
+      </div>
+      <p class="addon-desc">Signature professionnelle compatible tous clients mail.</p>
+    </div>
+    <div class="addon">
+      <div class="addon-top">
+        <span class="addon-name">Formation WordPress</span>
+        <span class="addon-price">€60 / heure</span>
+      </div>
+      <p class="addon-desc">Prenez en main votre site en toute autonomie.</p>
+    </div>
+    <div class="addon">
+      <div class="addon-top">
+        <span class="addon-name">Fiche Google My Business</span>
+        <span class="addon-price">€60</span>
+      </div>
+      <p class="addon-desc">Création et optimisation de votre fiche locale.</p>
+    </div>
+    <div class="addon">
+      <div class="addon-top">
+        <span class="addon-name">Traduction multilingue</span>
+        <span class="addon-price">dès €120</span>
+      </div>
+      <p class="addon-desc">Site disponible en français, néerlandais, anglais…</p>
+    </div>
+    <div class="addon">
+      <div class="addon-top">
+        <span class="addon-name">Politique de confidentialité</span>
+        <span class="addon-price">€40</span>
+      </div>
+      <p class="addon-desc">Mentions légales & RGPD adaptées à votre activité.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MAINTENANCE -->
+<section>
+  <p class="sec-label">Maintenance & suivi mensuel</p>
+  <div class="sec-intro">
+    <h2>Votre site reste <em>en vie.</em></h2>
+    <p>Un site qui n'est pas maintenu, c'est une vitrine qui prend la poussière. Je m'en occupe pour vous.</p>
+  </div>
+  <div class="maint-grid">
+    <div class="maint">
+      <div class="maint-name">Sécurité</div>
+      <div class="maint-price"><span class="amount">€35</span><span class="per">/ mois</span></div>
+      <div class="maint-note">Sans engagement</div>
+      <ul class="maint-list">
+        <li>Mises à jour WordPress & plugins</li>
+        <li>Sauvegarde mensuelle</li>
+        <li>Rapport mensuel d'état</li>
+      </ul>
+    </div>
+    <div class="maint star">
+      <div class="maint-name">Suivi Actif</div>
+      <div class="maint-price"><span class="amount">€80</span><span class="per">/ mois</span></div>
+      <div class="maint-note">Engagement 6 mois</div>
+      <ul class="maint-list">
+        <li>Tout le forfait Sécurité</li>
+        <li>1h de modification / mois incluse</li>
+        <li>Ajout de textes & images</li>
+        <li>Support email sous 48h</li>
+      </ul>
+    </div>
+    <div class="maint">
+      <div class="maint-name">Présence+</div>
+      <div class="maint-price"><span class="amount">€140</span><span class="per">/ mois</span></div>
+      <div class="maint-note">Engagement 6 mois</div>
+      <ul class="maint-list">
+        <li>Tout le forfait Suivi Actif</li>
+        <li>3h de modifications / mois</li>
+        <li>1 création visuelle / mois</li>
+        <li>Rapport SEO trimestriel</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Un projet ?<br>Parlons-en.</h2>
+  <div class="cta-r">
+    <p>Pas sûre de quel forfait choisir ? Envoyez-moi un message, on fait le point ensemble — sans engagement.</p>
+    <a href="mailto:eunicemtpro@gmail.com" class="btn-dark">Me contacter ↗</a>
+  </div>
+</section>
+
+<!-- FOOTNOTE -->
+<div class="footnote">
+  <div class="fn-block">
+    <p>Toujours inclus</p>
+    <ul>
+      <li>Brief de démarrage</li>
+      <li>Prototype visuel soumis avant développement</li>
+      <li>Livraison des accès complets</li>
+      <li>Appel de suivi post-lancement</li>
+      <li>Acompte de 40% à la commande</li>
+    </ul>
+  </div>
+  <div class="fn-block">
+    <p>Non inclus sauf mention</p>
+    <ul>
+      <li>Frais d'hébergement tiers</li>
+      <li>Licences de thèmes premium</li>
+      <li>Photos (stock ou shooting)</li>
+      <li>Rédaction de textes</li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  <span class="ft-l">© 2025 Eunice Mutope — Design & Communication digitale</span>
+  <div class="ft-r">
+    <a href="https://www.linkedin.com/in/eunice-mutope" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:eunicemtpro@gmail.com">Email</a>
+  </div>
+</footer>
+
+<script>
+  const c = document.getElementById('cur'), c2 = document.getElementById('cur2');
+  if (c && c2 && window.matchMedia('(pointer: fine)').matches) {
+    let mx=0,my=0,x=0,y=0;
+    document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; c.style.left=mx+'px'; c.style.top=my+'px'; });
+    (function loop(){ x+=(mx-x)*.14; y+=(my-y)*.14; c2.style.left=x+'px'; c2.style.top=y+'px'; requestAnimationFrame(loop); })();
+  }
+</script>
+
+</body>
+</html>
