@@ -119,10 +119,10 @@ nav.nav-solid {
 .btn-dark:hover { transform:scale(1.04); }
 
 /* Footer */
-footer { background:var(--b);color:var(--w);padding:1.2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.05); }
-.ft-l { font-family:var(--mono);font-size:.6rem;opacity:.25;text-transform:uppercase;letter-spacing:.1em; }
+footer { background:var(--b);color:var(--m);padding:1.2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.05); }
+.ft-l { font-family:var(--mono);font-size:.6rem;opacity:.75;text-transform:uppercase;letter-spacing:.1em; }
 .ft-r { display:flex;gap:1.5rem; }
-.ft-r a { font-family:var(--mono);font-size:.6rem;color:var(--w);opacity:.25;text-decoration:none;text-transform:uppercase;letter-spacing:.1em;transition:opacity .2s; }
+.ft-r a { font-family:var(--mono);font-size:.6rem;color:var(--w);opacity:.75;text-decoration:none;text-transform:uppercase;letter-spacing:.1em;transition:opacity .2s; }
 .ft-r a:hover { opacity:.8; }
 
 /* Footnote */
